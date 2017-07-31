@@ -1,4 +1,4 @@
-package com.example.lgf.demo.utils;
+package com.lgf.common.lib.utils;
 
 import android.content.res.ColorStateList;
 import android.text.SpannableStringBuilder;

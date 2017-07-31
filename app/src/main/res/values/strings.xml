@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Demo</string>
+    <string name="activity_main_test_span_button_text">Span示例</string>
+    <string name="activity_main_test_dialog_button_text">Dialog示例</string>
+
+    <string name="activity_dialog_test_fragment_dialog_button_text">FragmentDialog示例</string>
 </resources>

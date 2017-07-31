@@ -1,4 +1,4 @@
-package com.example.lgf.demo;
+package com.lgf.common;
 
 import org.junit.Test;
 

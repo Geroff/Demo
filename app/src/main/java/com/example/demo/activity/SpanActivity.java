@@ -1,4 +1,4 @@
-package com.example.lgf.demo;
+package com.example.demo.activity;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -10,10 +10,11 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
-import com.example.lgf.demo.utils.SpanUtils;
+import com.example.demo.R;
+import com.lgf.common.lib.utils.SpanUtils;
 
 
-public class MainActivity extends AppCompatActivity {
+public class SpanActivity extends AppCompatActivity {
     public static final String URL = "http://www.baidu.com";
     public static final String TYPEFACE_MONOSPACE = "monospace";
     public static final String TYPEFACE_SERIF = "serif";
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_span);
         initView();
         initData();
     }
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void testTypefaceSpan() {
         String content = tvTestTypefaceSpan.getText().toString();
-        int level = (int)(content.length() / 3);
+        int level = (int) (content.length() / 3);
 
         SpannableStringBuilder typefaceSpan1 = SpanUtils.getTypefaceSpan(content, TYPEFACE_SANS_SERIF, 0, level, SpannableStringBuilder.SPAN_INCLUSIVE_INCLUSIVE);
         SpannableStringBuilder typefaceSpan2 = SpanUtils.getTypefaceSpan(content, TYPEFACE_MONOSPACE, level, 2 * level, SpannableStringBuilder.SPAN_INCLUSIVE_INCLUSIVE);

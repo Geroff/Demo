@@ -1,4 +1,4 @@
-package com.example.lgf.common_lib;
+package com.lgf.common;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.lgf.common_lib.test", appContext.getPackageName());
+        assertEquals("com.lgf.common_lib.test", appContext.getPackageName());
     }
 }

@@ -6,15 +6,9 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btn_test_span"
+        android:id="@+id/btn_show_fragment_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/activity_main_test_span_button_text"/>
-
-    <Button
-        android:id="@+id/btn_test_dialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_main_test_dialog_button_text"/>
+        android:text="@string/activity_dialog_test_fragment_dialog_button_text"/>
 
 </LinearLayout>
