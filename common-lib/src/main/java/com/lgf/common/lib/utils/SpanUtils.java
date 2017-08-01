@@ -1,9 +1,20 @@
 package com.lgf.common.lib.utils;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.support.annotation.DrawableRes;
+import android.support.v4.graphics.drawable.DrawableWrapper;
+import android.support.v7.widget.DrawableUtils;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.DrawableMarginSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.IconMarginSpan;
+import android.text.style.ImageSpan;
 import android.text.style.ScaleXSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.SubscriptSpan;
@@ -167,4 +178,61 @@ public class SpanUtils {
         return spannableStringBuilder;
     }
 
+    /**
+     * ImageSpan </br>
+     * 功能：文本插入图片。</br>
+     *
+     * <b>构造方法很多：</b> </br>
+     * ImageSpan(Context context, Bitmap b) </br>
+     * ImageSpan(Context context, Bitmap b, int verticalAlignment) </br>
+     * ImageSpan(Drawable d) </br>
+     * ImageSpan(Drawable d, int verticalAlignment) </br>
+     * ImageSpan(Drawable d, String source) </br>
+     * ImageSpan(Drawable d, String source, int verticalAlignment) </br>
+     * ImageSpan(Context context, Uri uri) </br>
+     * ImageSpan(Context context, Uri uri, int verticalAlignment) </br>
+     * ImageSpan(Context context, @DrawableRes int resourceId) </br>
+     * ImageSpan(Context context, @DrawableRes int resourceId, int verticalAlignment) </br>
+     *
+     * verticalAlignment：</br>
+     * ImageSpan.ALIGN_BOTTOM </br>
+     * ImageSpan.ALIGN_BASELINE </br>
+     *
+     * source：图片的本机路径String。（ xxx/xxx/xxx.jpg ）</br>
+     * uri：图片的本机uri。</br>
+     */
+    public static SpannableStringBuilder getImageSpan(Context context, int resId, String content, int start, int end, int flag) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(content);
+        spannableStringBuilder.setSpan(new ImageSpan(context, resId, ImageSpan.ALIGN_BASELINE), start, end, flag);
+        return spannableStringBuilder;
+    }
+
+    /**
+     * IconMarginSpan </br>
+     * 功能：文本插入图片+ Margin。</br>
+     *
+     * <b>构造方法：</b> </br>
+     * IconMarginSpan(Bitmap bitmap, int pad) </br>
+     */
+    public static SpannableStringBuilder getIconMarginSpan(Context context, int resId, int margin, String content, int start, int end, int flag) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(content);
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resId);
+        spannableStringBuilder.setSpan(new IconMarginSpan(bitmap, margin), start, end, flag);
+        return spannableStringBuilder;
+    }
+
+    /**
+     * DrawableMarginSpan </br>
+     * 功能：文本插入图片+ Margin。</br>
+     *
+     * <b>构造方法：</b> </br>
+     * DrawableMarginSpan(Drawable drawable, int pad) </br>
+     */
+    public static SpannableStringBuilder getDrawableMarginSpan(Context context, int resId, int margin, String content, int start, int end, int flag) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(content);
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resId);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(context.getResources(), bitmap);
+        spannableStringBuilder.setSpan(new DrawableMarginSpan(bitmapDrawable, margin), start, end, flag);
+        return spannableStringBuilder;
+    }
 }

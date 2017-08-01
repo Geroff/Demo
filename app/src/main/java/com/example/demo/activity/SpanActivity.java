@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.demo.R;
@@ -32,6 +33,9 @@ public class SpanActivity extends AppCompatActivity {
     private TextView tvTestForegroundSpan;
     private TextView tvTestBackgroundSpan;
     private TextView tvTestForegroundAndBackgroundSpan;
+    private EditText etTestImageSpan;
+    private EditText etTestIconMarginSpan;
+    private EditText etTestDrawableMarginSpan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,9 @@ public class SpanActivity extends AppCompatActivity {
         testForegroundSpan();
         testBackgroundSpan();
         testForegroundAndBackgroundSpan();
+        testImageSpan();
+        testIconMarginSpan();
+        testDrawableMarginSpan();
     }
 
     private void initView() {
@@ -69,6 +76,9 @@ public class SpanActivity extends AppCompatActivity {
         tvTestForegroundSpan = (TextView) findViewById(R.id.tv_test_foreground_span);
         tvTestBackgroundSpan = (TextView) findViewById(R.id.tv_test_background_span);
         tvTestForegroundAndBackgroundSpan = (TextView) findViewById(R.id.tv_test_foreground_and_background_span);
+        etTestImageSpan = (EditText) findViewById(R.id.et_test_image_span);
+        etTestIconMarginSpan = (EditText) findViewById(R.id.et_test_icon_margin_span);
+        etTestDrawableMarginSpan = (EditText) findViewById(R.id.et_test_drawable_margin_span);
     }
 
 
@@ -192,5 +202,32 @@ public class SpanActivity extends AppCompatActivity {
         String content = tvTestBackgroundSpan.getText().toString();
         SpannableStringBuilder backgroundSpan = SpanUtils.getBackgroundColorSpan(content, Color.YELLOW, 0, content.length(), SpannableStringBuilder.SPAN_INCLUSIVE_INCLUSIVE);
         tvTestBackgroundSpan.setText(backgroundSpan);
+    }
+
+    /**
+     * 功能：文字图片。<br/>
+     */
+    private void testImageSpan() {
+        String content = etTestImageSpan.getText().toString();
+        SpannableStringBuilder imageSpan = SpanUtils.getImageSpan(this, R.drawable.liying_bg, content, 0, 2, SpannableStringBuilder.SPAN_INCLUSIVE_INCLUSIVE);
+        etTestImageSpan.setText(imageSpan);
+    }
+
+    /**
+     * 功能：文字图片 + Margin。<br/>
+     */
+    private void testIconMarginSpan() {
+        String content = etTestIconMarginSpan.getText().toString();
+        SpannableStringBuilder imageSpan = SpanUtils.getIconMarginSpan(this, R.drawable.liying_bg, 15, content, 0, 2, SpannableStringBuilder.SPAN_INCLUSIVE_INCLUSIVE);
+        etTestIconMarginSpan.setText(imageSpan);
+    }
+
+    /**
+     * 功能：文字图片 + Margin。<br/>
+     */
+    private void testDrawableMarginSpan() {
+        String content = etTestDrawableMarginSpan.getText().toString();
+        SpannableStringBuilder imageSpan = SpanUtils.getDrawableMarginSpan(this, R.drawable.liying_bg, 15, content, 0, 2, SpannableStringBuilder.SPAN_INCLUSIVE_INCLUSIVE);
+        etTestDrawableMarginSpan.setText(imageSpan);
     }
 }
