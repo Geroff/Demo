@@ -1,10 +1,18 @@
 package com.lgf.common.lib.utils;
 
+import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -84,7 +92,7 @@ public class Utils {
     }
 
     /**
-     * 获取手机uuid
+     * 获取手机uuid,相当于加密androidId
      */
     public static String getDeviceUUID(Context context) {
         UUID uuid = null;
@@ -103,10 +111,21 @@ public class Utils {
         return uuid.toString();
     }
 
+    /**
+     * 获取随机的UUID
+     *
+     * @return
+     */
     public static String getRandomUUID() {
         return UUID.randomUUID().toString();
     }
 
+    /**
+     * 获取手机的androidId
+     *
+     * @param context
+     * @return
+     */
     public static String getAndroidId(Context context) {
         String androidId = "9774d56d682e549e";
         if (context != null) {
@@ -120,6 +139,12 @@ public class Utils {
         return androidId;
     }
 
+    /**
+     * 获取应用的版本号
+     *
+     * @param context
+     * @return
+     */
     public static int getAppVersionCode(Context context) {
         if (context != null) {
             PackageManager pm = context.getPackageManager();
@@ -133,6 +158,12 @@ public class Utils {
         return 0;
     }
 
+    /**
+     * 获取应用的版本
+     *
+     * @param context
+     * @return
+     */
     public static String getAppVersionName(Context context) {
         if (context != null) {
             PackageManager pm = context.getPackageManager();
@@ -144,5 +175,80 @@ public class Utils {
             }
         }
         return "0.0.0";
+    }
+
+    /**
+     * 实现文本复制功能
+     *
+     * @param content
+     */
+    public static void copy(String content, Context context) {
+        if (context == null || TextUtils.isEmpty(content)) {
+            return;
+        }
+        // 得到剪贴板管理器
+        ClipboardManager cmb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        cmb.setPrimaryClip(ClipData.newPlainText("content", content));
+    }
+
+    /**
+     * 实现粘贴功能
+     *
+     * @param context
+     * @return
+     */
+    public static String paste(Context context) {
+        if (context == null) {
+            return "";
+        }
+        // 得到剪贴板管理器
+        ClipboardManager cmb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        return cmb.getPrimaryClip().toString().trim();
+    }
+
+    /**
+     * 进入app的设置应用界面
+     *
+     * @param context
+     */
+    public static void gotoAppSetting(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+        intent.setData(Uri.fromParts("package", context.getPackageName(), null));
+        if (!(context instanceof Activity)) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        context.startActivity(intent);
+    }
+
+    /**
+     * 设置图片的颜色
+     *
+     * @param drawable
+     * @param colors
+     * @return
+     */
+    public static Drawable tintDrawable(Drawable drawable, ColorStateList colors) {
+        final Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
+        DrawableCompat.setTintList(wrappedDrawable, colors);
+        return wrappedDrawable;
+    }
+
+    /**
+     * 分辨率转换dp转px
+     *
+     * @param context
+     * @param dipValue
+     * @return
+     */
+    public static int dip2px(Context context, float dipValue) {
+        if (context == null) {
+            return 0;
+        }
+
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
     }
 }
