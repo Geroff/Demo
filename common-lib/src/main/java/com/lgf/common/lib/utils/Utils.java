@@ -121,7 +121,6 @@ public class Utils {
         String defaultValue = "9774d56d682e549e";
         UUID uuid = null;
         String androidId = getAndroidId(context, defaultValue);
-        // don't use wrong android id
         if (defaultValue.equals(androidId)) {
             String deviceId = getImei(context, null);
             if (TextUtils.isEmpty(deviceId)) {
@@ -183,13 +182,12 @@ public class Utils {
     private static String getMacByReflect() throws Throwable {
         String mac = null;
 
-        Class<?> clazz = Class.forName("android.os.SystemProperties"); // android.os.SystemProperties
+        Class<?> clazz = Class.forName("android.os.SystemProperties");
         Method get = clazz.getMethod("get", String.class);
         String params = "wifi.interface";
         String interfaceName = (String) get.invoke(clazz, params);
-        //        Log.i(MESSAGE_TAG, "interfaceName = " + interfaceName);
 
-        mac = getMacByName(interfaceName); // getMac from interfaceName
+        mac = getMacByName(interfaceName);
         if (TextUtils.isEmpty(mac)) {
             mac = getMacByFile(interfaceName);
         }
