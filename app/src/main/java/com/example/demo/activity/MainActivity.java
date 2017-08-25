@@ -7,9 +7,7 @@ import android.view.View;
 
 import com.example.demo.R;
 
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +16,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         init();
     }
 
-
     private void init() {
         findViewById(R.id.btn_test_span).setOnClickListener(this);
         findViewById(R.id.btn_test_dialog).setOnClickListener(this);
+        findViewById(R.id.btn_test_widget).setOnClickListener(this);
     }
 
     @Override
@@ -34,6 +32,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_test_dialog:
                 intent.setClass(this, DialogActivity.class);
+                break;
+
+            case R.id.btn_test_widget:
+                intent.setClass(this, FlowLayoutActivity.class);
                 break;
         }
 

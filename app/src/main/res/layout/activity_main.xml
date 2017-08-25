@@ -17,4 +17,10 @@
         android:layout_height="wrap_content"
         android:text="@string/activity_main_test_dialog_button_text"/>
 
+    <Button
+        android:id="@+id/btn_test_widget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_main_test_define_view_button_text"/>
+
 </LinearLayout>

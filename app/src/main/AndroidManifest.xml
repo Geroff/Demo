@@ -21,6 +21,7 @@
 
         <activity android:name=".activity.SpanActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.DialogActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FlowLayoutActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
